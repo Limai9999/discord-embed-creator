@@ -569,35 +569,6 @@ export default function Home() {
 							embed.
 						</p>
 
-						<p className="mb-1">
-							The short link will be valid for one week.
-						</p>
-
-						<Copier
-							getContent={async () => {
-								const { id } = await fetch("/api/save", {
-									body: JSON.stringify({
-										embed: embedToPartial(embed)
-									}),
-									method: "POST",
-									headers: {
-										"Content-Type": "application/json"
-									}
-								}).then(res => res.json());
-
-								return `${location.origin}/?id=${id}`;
-							}}
-							idleClassName={button()}
-							loadingClassName={`${button(
-								"disabled"
-							)} animate-pulse`}
-							copiedClassName={button("disabled")}
-							errorClassName={button("disabled")}
-							timeout={30000}
-						>
-							Copy Short Link
-						</Copier>
-
 						<p className="mt-2 mb-1">
 							The permanent link contains all of your embed data.
 						</p>
