@@ -1,7 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-	i18n: { locales: ["en"], defaultLocale: "en" },
-	reactStrictMode: true
+  output: "export",
+  assetPrefix: "/discord-embed-creator/",
+  basePath: "/discord-embed-creator",
+  images: {
+    unoptimized: true
+  },
+  reactStrictMode: true,
 };
 
 module.exports = nextConfig;
