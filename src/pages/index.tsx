@@ -604,7 +604,7 @@ export default function Home() {
 
 						<Copier
 							getContent={() =>
-								`${location.origin}/?data=${encodeURIComponent(
+								`${location.origin}/discord-embed-creator/?data=${encodeURIComponent(
 									base64Encode(JSON.stringify(embedToPartial(embed)))
 								)}`
 							}
