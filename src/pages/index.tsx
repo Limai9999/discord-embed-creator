@@ -7,7 +7,7 @@ import LimitedInput from "../components/LimitedInput";
 import Output from "../components/Output";
 import ValueInput from "../components/ValueInput";
 import { Embed, EmbedField } from "../lib/interfaces";
-import { embedToPartial } from "../lib/utils";
+import { embedToPartial, base64Encode, base64Decode } from "../lib/utils";
 
 function ellipses(str: string, max = 50) {
 	return str.length > max ? `${str.slice(0, max - 3)}...` : str;
@@ -144,7 +144,7 @@ export default function Home() {
 				} else if (data) {
 					const embedString = Array.isArray(data) ? data[0] : data;
 
-					embed = JSON.parse(atob(embedString));
+					embed = JSON.parse(base64Decode(embedString));
 				}
 
 				loadEmbed(embed);
@@ -605,7 +605,7 @@ export default function Home() {
 						<Copier
 							getContent={() =>
 								`${location.origin}/?data=${encodeURIComponent(
-									btoa(JSON.stringify(embedToPartial(embed)))
+									base64Encode(JSON.stringify(embedToPartial(embed)))
 								)}`
 							}
 							idleClassName={button()}

@@ -13,6 +13,17 @@ export function embedToObjectCode(
 	return output.replace(/(\n\s*)"(\w+)":/g, "$1$2:");
 }
 
+// Safe base64 encoding and decoding for unicode characters
+export function base64Encode(str: string): string {
+	// Browser-safe implementation
+	return btoa(unescape(encodeURIComponent(str)));
+}
+
+export function base64Decode(str: string): string {
+	// Browser-safe implementation
+	return decodeURIComponent(escape(atob(str)));
+}
+
 function clearEmptySlots<T extends object>(
 	obj: T,
 	objectCode = false
