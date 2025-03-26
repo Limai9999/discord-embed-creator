@@ -200,7 +200,7 @@ export default function Home() {
 		setEmbedLoaded(true);
 	}
 
-	const emptySymbol = '\u200b'
+  const emptySymbol = '\u200b'
 
 	function safeTrim(value: string | undefined): string {
 		return value?.trim() || emptySymbol;
@@ -208,24 +208,24 @@ export default function Home() {
 
 	const embed: Embed = {
 		author: {
-			name: safeTrim(authorName),
-			iconUrl: safeTrim(authorIcon),
-			url: safeTrim(authorUrl)
+			name: authorName.trim(),
+			iconUrl: authorIcon.trim(),
+			url: authorUrl.trim()
 		},
-		title: safeTrim(title),
-		url: safeTrim(url),
-		description: safeTrim(description),
+		title: title.trim(),
+		url: url.trim(),
+		description: description.trim(),
 		fields: fields.map(field => ({
 			name: safeTrim(field.name),
 			value: safeTrim(field.value),
 			inline: field.inline
 		})),
-		image: safeTrim(image),
-		thumbnail: safeTrim(thumbnail),
+		image: image.trim(),
+		thumbnail: thumbnail.trim(),
 		color: colorEnabled ? color : undefined,
 		footer: {
-			text: safeTrim(footerText),
-			iconUrl: safeTrim(footerIcon)
+			text: footerText.trim(),
+			iconUrl: footerIcon.trim()
 		},
 		timestamp
 	};
