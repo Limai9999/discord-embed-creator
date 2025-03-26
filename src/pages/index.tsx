@@ -200,26 +200,32 @@ export default function Home() {
 		setEmbedLoaded(true);
 	}
 
+	const emptySymbol = '\u200b'
+
+	function safeTrim(value: string | undefined): string {
+		return value?.trim() || emptySymbol;
+	}
+
 	const embed: Embed = {
 		author: {
-			name: authorName.trim(),
-			iconUrl: authorIcon.trim(),
-			url: authorUrl.trim()
+			name: safeTrim(authorName),
+			iconUrl: safeTrim(authorIcon),
+			url: safeTrim(authorUrl)
 		},
-		title: title.trim(),
-		url: url.trim(),
-		description: description.trim(),
+		title: safeTrim(title),
+		url: safeTrim(url),
+		description: safeTrim(description),
 		fields: fields.map(field => ({
-			name: field.name.trim(),
-			value: field.value.trim(),
+			name: safeTrim(field.name),
+			value: safeTrim(field.value),
 			inline: field.inline
 		})),
-		image: image.trim(),
-		thumbnail: thumbnail.trim(),
+		image: safeTrim(image),
+		thumbnail: safeTrim(thumbnail),
 		color: colorEnabled ? color : undefined,
 		footer: {
-			text: footerText.trim(),
-			iconUrl: footerIcon.trim()
+			text: safeTrim(footerText),
+			iconUrl: safeTrim(footerIcon)
 		},
 		timestamp
 	};
@@ -434,7 +440,7 @@ export default function Home() {
 								</label>
 								<LimitedInput
 									limit={256}
-									required={true}
+									required={false}
 									type="text"
 									id={`field-name-${index}`}
 									value={field.name}
